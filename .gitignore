@@ -39,3 +39,7 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# demo videos are large; GIFs for the README are committed
+media/*.mp4
+media/*.mov
