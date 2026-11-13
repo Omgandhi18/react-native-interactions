@@ -6,6 +6,7 @@ export const colors = {
   textPrimary: '#F5F5F7',
   textSecondary: '#9A9AA5',
   accent: '#7C5CFF',
+  overlay: 'rgba(0, 0, 0, 0.45)',
 } as const;
 
 export const spacing = {

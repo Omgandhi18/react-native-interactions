@@ -8,5 +8,7 @@ export type Interaction = {
   description: string;
   /** Date the interaction was added, as YYYY-MM-DD. The gallery lists newest first. */
   createdAt: string;
+  /** Hide the header and status bar so the interaction fills the whole screen. */
+  fullScreen?: boolean;
   Component: ComponentType;
 };

@@ -1,6 +1,8 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { FloatingBackButton } from '@/components/FloatingBackButton';
 import { findInteraction } from '@/interactions/registry';
 import { strings } from '@/strings';
 import { colors, fontSizes } from '@/theme';
@@ -18,12 +20,14 @@ export default function InteractionScreen() {
     );
   }
 
-  const { Component, title } = interaction;
+  const { Component, title, fullScreen = false } = interaction;
 
   return (
     <View style={styles.screen}>
-      <Stack.Screen options={{ title }} />
+      <Stack.Screen options={{ title, headerShown: !fullScreen }} />
+      {fullScreen && <StatusBar hidden />}
       <Component />
+      {fullScreen && <FloatingBackButton />}
     </View>
   );
 }
