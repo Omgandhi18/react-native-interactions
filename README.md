@@ -1,7 +1,5 @@
 # React Native Interactions
 
-[![CI](https://github.com/Omgandhi18/react-native-interactions/actions/workflows/ci.yml/badge.svg)](https://github.com/Omgandhi18/react-native-interactions/actions/workflows/ci.yml)
-
 Big, full-screen interactions built with React Native, Skia and Reanimated. Each one lives in its
 own folder, so you can read it, run it and borrow from it.
 
