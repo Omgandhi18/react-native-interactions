@@ -31,5 +31,6 @@
     "new": "node scripts/new-interaction.mjs",
     "record:android": "pwsh -NoProfile -File scripts/record-android.ps1"
   },
-  "private": true
+  "private": true,
+  "packageManager": "pnpm@12.18.0"
 }

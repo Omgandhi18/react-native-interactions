@@ -1,11 +1,9 @@
 // `pnpm new <slug> "<Title>"` adds an import and an entry above the markers below.
-import { interaction as springTap } from './spring-tap';
 import { interaction as monsoonWindow } from './monsoon-window';
 // @new-interaction:imports
 import type { Interaction } from './types';
 
 const interactions: readonly Interaction[] = [
-  springTap,
   monsoonWindow,
   // @new-interaction:entries
 ];

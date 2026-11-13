@@ -8,8 +8,8 @@ Recording stops when you close the scrcpy window, or after -Seconds.
 With -Gif it also writes media/<slug>.gif for the README (needs ffmpeg).
 
 .EXAMPLE
-pnpm record:android spring-tap
-pnpm record:android spring-tap -Seconds 15 -ShowTouches -Gif
+pnpm record:android monsoon-window
+pnpm record:android monsoon-window -Seconds 20 -ShowTouches -Gif
 #>
 param(
     [Parameter(Mandatory = $true, Position = 0)]
