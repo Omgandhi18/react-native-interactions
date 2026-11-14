@@ -37,6 +37,13 @@ export const MOTION = {
   idleSpeedY: 0.4,
   springBack: { damping: 14, stiffness: 120 },
   flip: { damping: 16, stiffness: 110 },
+  /** A swipe faster than this (dp per second) and longer than `flickMinDistance` spins the card a half-turn. */
+  flickMinVelocity: 900,
+  flickMinDistance: 30,
+  /** Floor for a swipe's duration when working out its average speed (one frame). */
+  minGestureSeconds: 1 / 60,
+  /** A touch that moves further than this isn't a tap, so drags never flip the card. */
+  tapMaxDistance: 8,
   maxFrameStep: 1 / 20,
   fallbackFrameMs: 1000 / 60,
   msPerSecond: 1000,

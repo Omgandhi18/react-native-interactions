@@ -17,8 +17,9 @@ type Point = { x: number; y: number };
 
 /**
  * How the card is tilted and flipped. Tilt (−1 to 1 on each axis) comes from the phone's gravity
- * sensor plus your finger: drag to tilt it further, let go and it springs back. Tap to flip.
- * The resting angle slowly follows however you hold the phone, so the card starts flat in your hand.
+ * sensor plus your finger: drag to tilt it further, let go and it springs back. Flick sideways to
+ * spin it a half-turn in that direction (it keeps spinning the same way, never back), or tap to flip
+ * it forward. The resting angle slowly follows however you hold the phone, so the card starts flat.
  */
 export function useCardMotion(screenWidth: number, screenHeight: number) {
   const { sensor } = useAnimatedSensor(SensorType.GRAVITY);
@@ -27,6 +28,7 @@ export function useCardMotion(screenWidth: number, screenHeight: number) {
   const sensorY = useSharedValue(0);
   const dragX = useSharedValue(0);
   const dragY = useSharedValue(0);
+  /** Half-turns spun so far. Unbounded, so repeated spins keep going the same way. */
   const flip = useSharedValue(0);
   const flipTarget = useSharedValue(0);
 
@@ -66,11 +68,37 @@ export function useCardMotion(screenWidth: number, screenHeight: number) {
   const rotateY = useDerivedValue(() => flip.get() * Math.PI + tiltX.get() * MOTION.maxRotateY);
   const rotateX = useDerivedValue(() => -tiltY.get() * MOTION.maxRotateX);
 
+  const spin = (halfTurns: number) => {
+    'worklet';
+    const target = flipTarget.get() + halfTurns;
+    flipTarget.set(target);
+    flip.set(withSpring(target, MOTION.flip));
+    scheduleOnRN(playFlip);
+  };
+
+  const dragStartedAt = useSharedValue(0);
+
   const drag = usePanGesture({
+    onBegin: () => {
+      'worklet';
+      dragStartedAt.set(Date.now());
+    },
     onUpdate: (event) => {
       'worklet';
       dragX.set(clampUnit(event.translationX / (screenWidth * MOTION.dragRangeX)));
       dragY.set(clampUnit(event.translationY / (screenHeight * MOTION.dragRangeY)));
+    },
+    onDeactivate: (event) => {
+      'worklet';
+      // A fast sideways swipe spins the card the way it moved; a slow drag just tilts it.
+      // Speed is the faster of the release speed and the whole swipe's average, because fingers
+      // often slow down just before they lift.
+      const seconds = Math.max(MOTION.minGestureSeconds, (Date.now() - dragStartedAt.get()) / MOTION.msPerSecond);
+      const speed = Math.max(Math.abs(event.velocityX), Math.abs(event.translationX) / seconds);
+      const isFlick = speed > MOTION.flickMinVelocity && Math.abs(event.translationX) > MOTION.flickMinDistance;
+      if (isFlick) {
+        spin(Math.sign(event.translationX));
+      }
     },
     onFinalize: () => {
       'worklet';
@@ -80,12 +108,10 @@ export function useCardMotion(screenWidth: number, screenHeight: number) {
   });
 
   const tap = useTapGesture({
+    maxDistance: MOTION.tapMaxDistance,
     onActivate: () => {
       'worklet';
-      const target = 1 - flipTarget.get();
-      flipTarget.set(target);
-      flip.set(withSpring(target, MOTION.flip));
-      scheduleOnRN(playFlip);
+      spin(1);
     },
   });
 
