@@ -51,7 +51,8 @@ the foil catches the light; tap to flip it over.
 
 - **Tilt** the phone and the card turns in 3D while a rainbow sheen sweeps across the foil.
 - **Drag** to tilt it further by hand; let go and it springs back.
-- **Tap** to flip to the back, with a hologram sticker and a stamped card number.
+- **Flick** sideways to spin it a half-turn that way (it keeps spinning the same way), or **tap** to
+  flip it, to see the back with a hologram sticker and a stamped card number.
 - **Feel** a soft haptic tick as the band of light crosses the card.
 
 ### How it works

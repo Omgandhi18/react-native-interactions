@@ -75,7 +75,7 @@ export const BACKGROUND = {
 } as const;
 
 export const HINT = {
-  text: 'Tilt  ·  Drag  ·  Tap to flip',
+  text: 'Tilt  ·  Drag  ·  Flick or tap to flip',
   visibleMs: 3200,
   fadeMs: 700,
   bottomOffset: 48,
