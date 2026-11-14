@@ -3,7 +3,7 @@
 import { BlendMode, BlurStyle, Skia, TileMode } from '@shopify/react-native-skia';
 import type { SkCanvas, SkImage } from '@shopify/react-native-skia';
 
-import type { SeededRandom } from '../seededRandom';
+import type { SeededRandom } from '@/shared/seededRandom';
 import { FOG_LOOK } from './constants';
 import { colorPaint, imageBounds, type LightSource } from './drawing';
 

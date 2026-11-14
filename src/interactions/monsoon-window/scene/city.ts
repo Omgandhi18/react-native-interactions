@@ -4,7 +4,7 @@ import { BlurStyle, Skia, TileMode, vec } from '@shopify/react-native-skia';
 import type { SkCanvas } from '@shopify/react-native-skia';
 
 import { lerp } from '../math';
-import type { SeededRandom } from '../seededRandom';
+import type { SeededRandom } from '@/shared/seededRandom';
 import {
   AVIATION_LIGHT,
   CAR_LANES,

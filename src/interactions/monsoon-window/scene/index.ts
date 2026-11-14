@@ -4,7 +4,7 @@
 import type { SkImage } from '@shopify/react-native-skia';
 
 import { DROP_LOOK } from '../constants';
-import { createSeededRandom } from '../seededRandom';
+import { createSeededRandom } from '@/shared/seededRandom';
 import { drawCity } from './city';
 import { SCENE } from './constants';
 import { renderToImage, type LightSource } from './drawing';

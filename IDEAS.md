@@ -7,7 +7,7 @@ polished final video.
 | # | Interaction | Status | Difficulty |
 |---|---|---|---|
 | 1 | Monsoon window | Built, ready to record | Medium–hard |
-| 2 | Holographic tilt card | Next | Medium |
+| 2 | Holographic tilt card | Built, ready to record | Medium |
 | 3 | Particles that explode and reassemble | Idea | Medium–hard |
 | 4 | Page curl | Idea | Hard |
 | 5 | Ride replay | Idea | Medium–hard |

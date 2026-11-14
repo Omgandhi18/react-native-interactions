@@ -38,6 +38,40 @@ Code: [`src/interactions/monsoon-window`](src/interactions/monsoon-window). Star
 `simulation.ts` (the physics) and `render.ts` (the drawing). Every tuning value is in
 `constants.ts` and `scene/constants.ts`.
 
+## Holo Card
+
+<p align="center">
+  <img src="media/holo-card-front.jpg" width="280" alt="A dark metal card tilted in 3D, its wavy security lines and the light across it shimmering in rainbow foil colours" />
+  &nbsp;&nbsp;
+  <img src="media/holo-card-back.jpg" width="280" alt="The back of the same card: magnetic stripe, a stacked card number stamped into the metal, a signature strip and a glowing hologram sticker" />
+</p>
+
+A holographic metal card (an original design, not a real card). Tilt the phone or drag the card and
+the foil catches the light; tap to flip it over.
+
+- **Tilt** the phone and the card turns in 3D while a rainbow sheen sweeps across the foil.
+- **Drag** to tilt it further by hand; let go and it springs back.
+- **Tap** to flip to the back, with a hologram sticker and a stamped card number.
+- **Feel** a soft haptic tick as the band of light crosses the card.
+
+### How it works
+
+- **The foil is a GPU shader.** A small SkSL program runs for every pixel of the card. It takes the
+  artwork, a foil mask (white where the card is holographic) and the tilt, and adds diagonal rainbow
+  stripes, a bright band where the light catches, round glitter specks that each flash at their own
+  angle, and a moving glare.
+- **The artwork is drawn once.** Both faces, and their foil masks, are drawn in code to offscreen
+  images when the screen opens; the shader does all the per-frame work.
+- **Real 3D.** The card is a Skia group with `perspective`, `rotateX` and `rotateY` transforms. The
+  back is drawn mirrored, so when the card turns 180° it reads the right way round.
+- **Tilt follows how you hold the phone.** The gravity sensor's resting angle slowly re-centres, so
+  the card starts flat in your hand. Without a sensor (simulators), it sways gently on its own.
+- **Designs plug in.** A card is just a design (artwork and foil masks for each face), so new cards
+  reuse the same engine.
+
+Code: [`src/interactions/holo-card`](src/interactions/holo-card). Start with `foilShader.ts` (the
+foil) and `CardScene.tsx` (the 3D scene). The Prism card's design is in `designs/credit-card`.
+
 ## Coming next
 
 The pieces planned next are listed in [IDEAS.md](IDEAS.md).
@@ -92,7 +126,10 @@ src/
   interactions/
     monsoon-window/          Component, simulation, renderer, tilt input, haptics
       scene/                 The generated city, the fog and the drop sprites
+    holo-card/               Foil shader, 3D scene, tilt/drag/flip motion, haptics
+      designs/               Card designs: artwork and foil masks for each face
     registry.ts              The list the gallery reads
+  shared/                    Helpers used by several interactions (offscreen rendering, sizing)
   theme.ts                   Colours, spacing, radii, type sizes
 scripts/
   new-interaction.mjs        Scaffolds a new interaction
