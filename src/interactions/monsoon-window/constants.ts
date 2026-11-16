@@ -144,7 +144,6 @@ export const LIGHTNING = {
 } as const;
 
 export const GRAVITY = {
-  standard: 9.81,
   /** How quickly drops respond to tilting the phone. */
   smoothing: 5,
   /** Below this much in-plane gravity (phone lying flat), runners stop. Fraction of 1 g. */

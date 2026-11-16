@@ -2,6 +2,7 @@
 import { interaction as monsoonWindow } from './monsoon-window';
 import { interaction as holoCard } from './holo-card';
 import { interaction as marbleDust } from './marble-dust';
+import { interaction as hourglass } from './hourglass';
 // @new-interaction:imports
 import type { Interaction } from './types';
 
@@ -9,6 +10,7 @@ const interactions: readonly Interaction[] = [
   monsoonWindow,
   holoCard,
   marbleDust,
+  hourglass,
   // @new-interaction:entries
 ];
 

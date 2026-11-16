@@ -15,7 +15,7 @@ import { playThunder, playWipeTick } from './haptics';
 import { createRenderKit, drawFrame } from './render';
 import { createSceneAssets } from './scene';
 import { createInitialState, endWipe, stepSimulation, triggerLightning, wipeTo } from './simulation';
-import { useScreenGravity } from './useScreenGravity';
+import { useScreenGravity } from '@/shared/useScreenGravity';
 
 const LIGHTNING_TAPS = 2;
 

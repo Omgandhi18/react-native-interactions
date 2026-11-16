@@ -50,7 +50,7 @@ list is always the next build. Stay two or three pieces ahead: large pieces can 
 
 | # | Piece | What you do | Under the hood | Size |
 |---|---|---|---|---|
-| 1 | Hourglass | Flip the phone and 6,000 grains pour through the neck and pile into a cone. | Granular flow on the UI thread. Sand runs at the same rate whether the top is full or nearly empty, which is why hourglasses keep time. | L |
+| 1 | Hourglass | Tap or turn the phone over to flip a 30-second glass, and 7,200 grains pour through the neck and pile into a cone. | Granular flow on the UI thread. Sand runs at the same rate whether the top is full or nearly empty, which is why hourglasses keep time. | L |
 | 2 | Murmuration | Thousands of starlings swirl across a dusk sky. Your finger is a falcon they split around. | Flocking (boids) with a spatial hash, drawn with drawAtlas. | L |
 | 3 | Fireflies | Tap the jar to wake the fireflies. They blink at random, then slowly fall into sync. | Coupled oscillators (the Kuramoto model), the same maths as an audience's applause syncing up. | M |
 | 4 | Iron Filings | Drag a magnet under a sheet of paper and the filings stand up along the field lines. | A dipole field per particle, line sprites. | M |
