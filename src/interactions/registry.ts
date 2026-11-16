@@ -1,12 +1,14 @@
 // `pnpm new <slug> "<Title>"` adds an import and an entry above the markers below.
 import { interaction as monsoonWindow } from './monsoon-window';
 import { interaction as holoCard } from './holo-card';
+import { interaction as marbleDust } from './marble-dust';
 // @new-interaction:imports
 import type { Interaction } from './types';
 
 const interactions: readonly Interaction[] = [
   monsoonWindow,
   holoCard,
+  marbleDust,
   // @new-interaction:entries
 ];
 

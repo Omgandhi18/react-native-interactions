@@ -8,7 +8,7 @@ polished final video.
 |---|---|---|---|
 | 1 | Monsoon window | Built, ready to record | Medium–hard |
 | 2 | Holographic tilt card | Built, ready to record | Medium |
-| 3 | Particles that explode and reassemble | Idea | Medium–hard |
+| 3 | Particles that explode and reassemble (Marble Dust) | Built, ready to record | Medium–hard |
 | 4 | Page curl | Idea | Hard |
 | 5 | Ride replay | Idea | Medium–hard |
 | 6 | Ink in water | Idea | Hard |
@@ -26,10 +26,10 @@ tilt the phone.
 **Techniques:** Skia shader for the foil, motion sensor, 3D perspective transform.
 
 ## 3. Particles that explode and reassemble
-Your name made of thousands of particles. Swipe through it and they scatter, then drift
-back into place.
-**Techniques:** sampling text into points, Skia Atlas for drawing thousands of sprites,
-per-particle physics on the UI thread.
+Michelangelo's David made of thousands of grains of marble dust. Swipe through him and they
+scatter, then drift back into place; tap and he bursts apart.
+**Techniques:** sampling a public-domain 3D scan into evenly spaced points with baked shadows,
+Skia Atlas for drawing thousands of sprites, per-particle physics on the UI thread.
 
 ## 4. Page curl
 A full-screen book or magazine page that curls realistically under your finger, shading

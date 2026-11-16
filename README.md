@@ -73,6 +73,51 @@ the foil catches the light; tap to flip it over.
 Code: [`src/interactions/holo-card`](src/interactions/holo-card). Start with `foilShader.ts` (the
 foil) and `CardScene.tsx` (the 3D scene). The Prism card's design is in `designs/credit-card`.
 
+## Marble Dust
+
+<p align="center">
+  <img src="media/marble-dust-statue.jpg" width="280" alt="The head of Michelangelo's David drawn in thousands of small marble-white dots on black, lit from the upper left" />
+  &nbsp;&nbsp;
+  <img src="media/marble-dust-scattered.jpg" width="280" alt="The same head with a swipe torn through the eyes and brow, the dots streaming off to the right" />
+</p>
+
+Michelangelo's David, made of 12,000 grains of marble dust. Swipe through him and the grains
+scatter, then drift back into place; tap and he bursts apart.
+
+- **Swipe** through the statue to knock grains loose. They're dragged along with your finger and
+  pushed out from it, so a finger held still parts the dust.
+- **Tap** to shatter him. Every grain blasts away from your finger, toward and away from you, then
+  finds its way home.
+- **Watch** him sway slowly from side to side, so you can see he's 3D, not a flat picture.
+- **Feel** a gritty tick while a swipe tears through, and a thump when he shatters.
+
+### How it works
+
+- **A real 3D scan.** The shape comes from a scan of a plaster cast of David's head, released into
+  the public domain by SMK, the National Gallery of Denmark. `scripts/scan-to-points.mjs` turns its
+  400,000 triangles into 12,000 points, each with a surface normal, packed into a 157 KB file.
+- **Evenly spaced, not random.** Random points clump and leave holes, which reads as noise. The
+  script draws many candidates and keeps one only if no kept point is too close, and packs more
+  points onto the surfaces that face you.
+- **Shadows are baked in.** For each point, the script measures how much nearby surface rises above
+  it, so points in the eye sockets and between the curls come out darker. That's most of what makes
+  the face read.
+- **Physics on the UI thread.** Each grain has a home on the statue and a spring pulling it back. A
+  Reanimated frame callback steps all 12,000 every frame, in typed arrays, so the JS thread stays free.
+- **One draw call.** Every grain is drawn with a single Skia `drawAtlas`. Passing a colour per grain
+  to native code is slow, so instead the atlas is a strip of 16 pre-shaded dots and each grain
+  points at the brightness it needs.
+
+Code: [`src/interactions/marble-dust`](src/interactions/marble-dust). Start with `simulation.ts`
+(the physics) and `render.ts` (the drawing). Every tuning value is in `constants.ts`.
+
+To rebuild the points, download
+[SMK's scan](https://api.smk.dk/api/v1/download-3d/nz806401j_KAS2232_small.stl) (20 MB) and run:
+
+```bash
+node scripts/scan-to-points.mjs nz806401j_KAS2232_small.stl src/interactions/marble-dust/scan.generated.ts --front 210 --count 12000 --crop-bottom 0.13
+```
+
 ## Coming next
 
 The pieces planned next are listed in [IDEAS.md](IDEAS.md).
@@ -123,17 +168,19 @@ record an iPhone with its built-in Screen Recording.
 ```
 src/
   app/                       Expo Router screens: the gallery and one screen per interaction
-  components/                Shared UI (gallery card, floating back button)
+  components/                Shared UI (gallery card, floating back button, fading hint)
   interactions/
     monsoon-window/          Component, simulation, renderer, tilt input, haptics
       scene/                 The generated city, the fog and the drop sprites
     holo-card/               Foil shader, 3D scene, tilt/drag/flip motion, haptics
       designs/               Card designs: artwork and foil masks for each face
+    marble-dust/             Grain physics, atlas renderer, gestures, and the generated scan points
     registry.ts              The list the gallery reads
   shared/                    Helpers used by several interactions (offscreen rendering, sizing)
   theme.ts                   Colours, spacing, radii, type sizes
 scripts/
   new-interaction.mjs        Scaffolds a new interaction
+  scan-to-points.mjs         Turns a 3D scan (binary STL) into Marble Dust's points
   record-android.ps1         Records a demo with scrcpy
 media/                       Screenshots and demo recordings
 ```

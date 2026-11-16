@@ -1,11 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 
+import { FadingHint } from '@/components/FadingHint';
 import { useMeasuredSize } from '@/shared/useMeasuredSize';
 import { colors } from '@/theme';
 
 import { CardScene } from './CardScene';
+import { HINT } from './constants';
 import type { CardDesign } from './designs/types';
-import { MotionHint } from './MotionHint';
 
 type Props = {
   design: CardDesign;
@@ -21,7 +22,7 @@ export function HoloCard({ design }: Props) {
   return (
     <View style={styles.container} onLayout={onLayout}>
       {size && <CardScene width={size.width} height={size.height} design={design} />}
-      <MotionHint />
+      <FadingHint hint={HINT} />
     </View>
   );
 }
