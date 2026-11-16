@@ -1,14 +1,14 @@
 # Ideas
 
-Big, full-screen interactions to build, roughly in order. Each one becomes 3–4 posts:
-the idea and a rough first version, a breakdown of the hardest technique, then the
-polished final video.
+Big, full-screen interactions to build. Each one is a single post that stands on its own:
+no numbering, no series, no follow-ups. The full list of upcoming pieces and the posting
+schedule live in a separate posting plan.
 
 | # | Interaction | Status | Difficulty |
 |---|---|---|---|
-| 1 | Monsoon window | Built, ready to record | Medium–hard |
-| 2 | Holographic tilt card | Built, ready to record | Medium |
-| 3 | Particles that explode and reassemble (Marble Dust) | Built, ready to record | Medium–hard |
+| 1 | Monsoon window | Posted | Medium–hard |
+| 2 | Holographic tilt card | Posted | Medium |
+| 3 | Particles that explode and reassemble (Marble Dust) | Posted | Medium–hard |
 | 4 | Page curl | Idea | Hard |
 | 5 | Ride replay | Idea | Medium–hard |
 | 6 | Ink in water | Idea | Hard |
