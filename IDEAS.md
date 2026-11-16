@@ -36,17 +36,11 @@ scatter, then drift back into place; tap and he bursts apart.
 **Techniques:** sampling a public-domain 3D scan into evenly spaced points with baked shadows,
 Skia Atlas for drawing thousands of sprites, per-particle physics on the UI thread.
 
-## Next three weeks
+## Build order
 
-| Week | Mon (M) | Tue (L) | Wed (S) | Thu (M) | Fri (M) | Sat (S) | Sun (S) |
-|---|---|---|---|---|---|---|---|
-| 1 | Fireflies | The Great Wave | Match Strike | Marbling | Paper Shredder | Bubble Wrap | Comet |
-| 2 | Paint Palette | Hourglass | Double Pendulum | Typewriter | Black Hole | Ticket Stub | Times-Table Cardioid |
-| 3 | Iron Filings | Sequins | Fountain Pen | Commit Lawn | Pull-Cord Lamp | Newton's Cradle | Moon Phase |
-
-Stay two or three pieces ahead, and start each large piece a day early. After week three,
-keep picking from the list: never two pieces from the same theme on consecutive days, and
-keep pieces that share a technique at least two weeks apart.
+Build and post the list in order, from #1 Hourglass to #150 Turntable, so the top of the
+list is always the next build. Stay two or three pieces ahead: large pieces can bunch up
+(#1 and #2, then #11, #12 and #13), so start those a day or two early.
 
 ## The list
 
