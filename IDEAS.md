@@ -18,6 +18,7 @@ When a piece is posted, move it from the list into Posted.
 | Holographic tilt card | Medium |
 | Marble Dust | Medium–hard |
 | Hourglass | Hard |
+| Murmuration | Hard |
 
 ### Monsoon window
 The screen is a rain-streaked, foggy window. Drag a finger to wipe the fog away and see a
@@ -45,6 +46,13 @@ pile into a soft cone.
 slope rules that settle piles near 30° instead of 45° steps, Skia Atlas for the grains and
 their motion streaks, gravity sensor.
 
+### Murmuration
+3,000 starlings over a dusk sky, seen from the ground. Each one steers by its seven nearest
+neighbours, and your finger is a falcon: the flock splits around it and closes up behind.
+**Techniques:** 3D boids with topological neighbours found through a spatial hash, edge birds
+leading the turns, a perspective camera with depth haze, Skia Atlas for the birds and their
+wing poses, per-bird physics on the UI thread.
+
 ## Build order
 
 Build and post the list in order, down to #150 Turntable, so the top of the list is always
@@ -60,7 +68,6 @@ pieces leave it, and the rest keep their numbers.
 
 | # | Piece | What you do | Under the hood | Size |
 |---|---|---|---|---|
-| 2 | Murmuration | Thousands of starlings swirl across a dusk sky. Your finger is a falcon they split around. | Flocking (boids) with a spatial hash, drawn with drawAtlas. | L |
 | 3 | Fireflies | Tap the jar to wake the fireflies. They blink at random, then slowly fall into sync. | Coupled oscillators (the Kuramoto model), the same maths as an audience's applause syncing up. | M |
 | 4 | Iron Filings | Drag a magnet under a sheet of paper and the filings stand up along the field lines. | A dipole field per particle, line sprites. | M |
 | 5 | Dandelion | Blow on the mic and the seeds lift off and drift away. A new head grows back. | The mic level from expo-audio drives the wind. | M |
