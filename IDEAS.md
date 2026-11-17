@@ -17,6 +17,7 @@ When a piece is posted, move it from the list into Posted.
 | Monsoon window | Medium–hard |
 | Holographic tilt card | Medium |
 | Marble Dust | Medium–hard |
+| Hourglass | Hard |
 
 ### Monsoon window
 The screen is a rain-streaked, foggy window. Drag a finger to wipe the fog away and see a
@@ -36,21 +37,29 @@ scatter, then drift back into place; tap and he bursts apart.
 **Techniques:** sampling a public-domain 3D scan into evenly spaced points with baked shadows,
 Skia Atlas for drawing thousands of sprites, per-particle physics on the UI thread.
 
+### Hourglass
+A 30-second glass of 7,200 grains of sand. Tap or turn the phone over to flip it, and the
+grains pour through the neck at the same rate whether the top is full or nearly empty, then
+pile into a soft cone.
+**Techniques:** a falling-sand grid stepped 120 times a second on the UI thread, rolling and
+slope rules that settle piles near 30° instead of 45° steps, Skia Atlas for the grains and
+their motion streaks, gravity sensor.
+
 ## Build order
 
-Build and post the list in order, from #1 Hourglass to #150 Turntable, so the top of the
-list is always the next build. Stay two or three pieces ahead: large pieces can bunch up
-(#1 and #2, then #11, #12 and #13), so start those a day or two early.
+Build and post the list in order, down to #150 Turntable, so the top of the list is always
+the next build. Stay two or three pieces ahead: large pieces can bunch up (#11, #12 and
+#13), so start those a day or two early.
 
 ## The list
 
-150 pieces across 14 themes: 21 large, 73 medium and 56 small.
+The list started with 150 pieces across 14 themes: 21 large, 73 medium and 56 small. Posted
+pieces leave it, and the rest keep their numbers.
 
 ### Particles and swarms
 
 | # | Piece | What you do | Under the hood | Size |
 |---|---|---|---|---|
-| 1 | Hourglass | Tap or turn the phone over to flip a 30-second glass, and 7,200 grains pour through the neck and pile into a cone. | Granular flow on the UI thread. Sand runs at the same rate whether the top is full or nearly empty, which is why hourglasses keep time. | L |
 | 2 | Murmuration | Thousands of starlings swirl across a dusk sky. Your finger is a falcon they split around. | Flocking (boids) with a spatial hash, drawn with drawAtlas. | L |
 | 3 | Fireflies | Tap the jar to wake the fireflies. They blink at random, then slowly fall into sync. | Coupled oscillators (the Kuramoto model), the same maths as an audience's applause syncing up. | M |
 | 4 | Iron Filings | Drag a magnet under a sheet of paper and the filings stand up along the field lines. | A dipole field per particle, line sprites. | M |
