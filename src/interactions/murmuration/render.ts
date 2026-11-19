@@ -7,14 +7,12 @@ import type { SkCanvas, SkImage, SkPaint, SkPath, SkPicture, SkRect, SkRSXform }
 
 import { createSeededRandom } from '@/shared/seededRandom';
 import type { SeededRandom } from '@/shared/seededRandom';
-import { colorPaint, renderToImage, withAlpha } from '@/shared/skia';
+import { colorPaint, renderToImage, treelinePath, withAlpha } from '@/shared/skia';
 
 import { BIRD, BIRD_SPRITE, HILLS, SEED, SKY, SUN, TONES, TREES } from './constants';
 import type { FlockState } from './simulation';
 
 const TWO_PI = Math.PI * 2;
-/** A cubic Bézier whose two control points sit this many times higher than its ends peaks at exactly 1. */
-const CUBIC_PEAK = 4 / 3;
 
 export type BirdAtlas = {
   image: SkImage;
@@ -126,24 +124,6 @@ function hillsPath(width: number, height: number, random: SeededRandom): SkPath 
   return path.build();
 }
 
-/** A row of rounded tree crowns of random widths and heights. */
-function treelinePath(width: number, height: number, random: SeededRandom): SkPath {
-  const base = TREES.baseline * height;
-  const path = Skia.PathBuilder.Make();
-  path.moveTo(0, height);
-  path.lineTo(0, base);
-  let x = 0;
-  while (x < width) {
-    const crownWidth = random.range(TREES.minWidth, TREES.maxWidth) * width;
-    const top = base - random.range(TREES.minHeight, TREES.maxHeight) * height * CUBIC_PEAK;
-    path.cubicTo(x, top, x + crownWidth, top, x + crownWidth, base);
-    x += crownWidth;
-  }
-  path.lineTo(x, height);
-  path.close();
-  return path.build();
-}
-
 function createSkyArt(width: number, height: number): SkyArt {
   const random = createSeededRandom(SEED);
   const bounds = Skia.XYWHRect(0, 0, width, height);
@@ -178,7 +158,7 @@ function createSkyArt(width: number, height: number): SkyArt {
   }, bounds);
 
   const front = createPicture((canvas) => {
-    canvas.drawPath(treelinePath(width, height, random), colorPaint(TREES.color));
+    canvas.drawPath(treelinePath(width, height, TREES, random), colorPaint(TREES.color));
   }, bounds);
 
   return { back, front };

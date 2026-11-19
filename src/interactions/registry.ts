@@ -4,6 +4,7 @@ import { interaction as holoCard } from './holo-card';
 import { interaction as marbleDust } from './marble-dust';
 import { interaction as hourglass } from './hourglass';
 import { interaction as murmuration } from './murmuration';
+import { interaction as fireflies } from './fireflies';
 // @new-interaction:imports
 import type { Interaction } from './types';
 
@@ -13,6 +14,7 @@ const interactions: readonly Interaction[] = [
   marbleDust,
   hourglass,
   murmuration,
+  fireflies,
   // @new-interaction:entries
 ];
 
